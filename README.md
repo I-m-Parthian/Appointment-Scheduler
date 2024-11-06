@@ -7,8 +7,8 @@ The tasks are:
 4. Modifying an appointment
 
 ## Get list of available dates and times
-* **Assumption**: all the available slots are already populated in the database. For the same we have created a script in db/seed.rb to populate database.
-* Slots are categories by the status. A slot can have 3 possible value for the status(**available, booked, canceled**)
+* **Assumption**: all the available slots are already populated in the database. For the same we have created a script in **db/seed.rb** to populate database.
+* Slots are categories by the status. A slot can have 3 possible value for the Status(**available, booked, canceled**)
 * All the slots with status as available will be fetched for this case
 * Date and time are in (DD/MM/YYYY HH:MM PM) format
 ### Request
@@ -149,3 +149,14 @@ Content-Type: application/json
   }
 }
 ```
+### Appointment Model
+- `id`: Integer, primary key.
+- `status`: String, possible values: `available`, `booked`, `canceled`.
+- `date_time`: DateTime, formatted as `DD/MM/YYYY HH:MM PM`.
+
+### Summary of the error handling implemented:
+
+* 400 Bad Request: Invalid request parameters.
+* 404 Not Found: Resource not found (e.g., appointment ID does not exist).
+* 422 Unprocessable Entity: Validation errors (e.g., slot unavailable).
+* 500 Internal Server Error: Unexpected server errors.

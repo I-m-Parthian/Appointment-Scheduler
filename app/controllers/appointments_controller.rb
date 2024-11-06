@@ -40,7 +40,7 @@ class AppointmentsController < ApplicationController
         @appointment.update(status: "available")
         new_appointment.update(status: "booked")
         @appointment = new_appointment
-        render json: { message: "Appointment created successfully", appointment: formatted_appointment }, status: :created
+        render json: { message: "Appointment Updated successfully", appointment: formatted_appointment }, status: :created
       else
         render json: { error: { code: "unavailable_slot", message: "New date/time is not available" } }, status: :unprocessable_entity
       end
